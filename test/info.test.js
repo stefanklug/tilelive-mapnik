@@ -1,24 +1,29 @@
 var fs = require('fs');
 var assert = require('assert');
-var mapnik = require('..');
+var mapnik_backend = require('..');
 
 
 exports['getInfo()'] = function(beforeExit) {
     var completed = false;
-    new mapnik('mapnik://./test/data/world.xml', function(err, source) {
+    new mapnik_backend('mapnik://./test/data/world.xml', function(err, source) {
         if (err) throw err;
 
         source.getInfo(function(err, info) {
             completed = true;
             if (err) throw err;
-            assert.deepEqual(info, {
-                name: 'world',
+            var expected = {
+                name: 'Smallworld',
+                description: "It's a small world after all.",
                 id: 'world',
                 minzoom: 0,
                 maxzoom: 22,
-                center: [ 0, 0, 2 ],
-                bounds: [ -180, -85, 180, 85 ]
-            });
+                center: [ 0, 0, 2 ]
+            };
+            assert.equal(info.name,expected.name);
+            assert.equal(info.id,expected.id);
+            assert.equal(info.minzoom,expected.minzoom);
+            assert.equal(info.maxzoom,expected.maxzoom);
+            assert.deepEqual(info.center,expected.center);
         });
     });
 
@@ -31,7 +36,7 @@ exports['getInfo() with XML string'] = function(beforeExit) {
     var xml = fs.readFileSync('./test/data/world.xml', 'utf8');
 
     var completed = false;
-    new mapnik({
+    new mapnik_backend({
         protocol: 'mapnik:',
         pathname: './test/data/world.xml',
         search: '?' + Date.now(), // prevents caching
@@ -42,15 +47,19 @@ exports['getInfo() with XML string'] = function(beforeExit) {
         source.getInfo(function(err, info) {
             completed = true;
             if (err) throw err;
-            console.warn(info);
-            assert.deepEqual(info, {
-                name: 'world',
+            var expected = {
+                name: 'Smallworld',
+                description: "It's a small world after all.",
                 id: 'world',
                 minzoom: 0,
                 maxzoom: 22,
-                center: [ 0, 0, 2 ],
-                bounds: [ -180, -85, 180, 85 ]
-            });
+                center: [ 0, 0, 2 ]
+            };
+            assert.equal(info.name,expected.name);
+            assert.equal(info.id,expected.id);
+            assert.equal(info.minzoom,expected.minzoom);
+            assert.equal(info.maxzoom,expected.maxzoom);
+            assert.deepEqual(info.center,expected.center);
         });
     });
 
@@ -59,24 +68,27 @@ exports['getInfo() with XML string'] = function(beforeExit) {
     })
 };
 
-exports['getInfo() with formatter'] = function(beforeExit) {
+exports['getInfo() with template'] = function(beforeExit) {
     var completed = false;
-    new mapnik('mapnik://./test/data/test.xml', function(err, source) {
+    new mapnik_backend('mapnik://./test/data/test.xml', function(err, source) {
         if (err) throw err;
 
         source.getInfo(function(err, info) {
             completed = true;
             if (err) throw err;
-            assert.deepEqual(info, {
+            var expected = {
                 name: 'test',
                 id: 'test',
                 minzoom: 0,
                 maxzoom: 22,
                 center: [ 1.054687500000007, 29.53522956294847, 2 ],
-                bounds: [ -180, -85.05112877980659, 180, 85.05112877980659 ],
-                // @TODO: move this back to tilelive-mapnik?
-                // formatter: "function(options, data) { switch (options.format) { case 'full': return '' + data[\"NAME\"] + ''; break; case 'location': return ''; break; case 'teaser': default: return '' + data[\"NAME\"] + ''; break; } }"
-            });
+                template: '{{NAME}}'
+            };
+            assert.equal(info.name,expected.name);
+            assert.equal(info.id,expected.id);
+            assert.equal(info.minzoom,expected.minzoom);
+            assert.equal(info.maxzoom,expected.maxzoom);
+            assert.deepEqual(info.center,expected.center);
         });
     });
 
