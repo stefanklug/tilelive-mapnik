@@ -10,8 +10,7 @@
     </Parameters>
     <Style name="world">
         <Rule>
-            <PolygonSymbolizer fill="#eeeeee" clip="true" />
-            <LineSymbolizer stroke="#cccccc" stroke-width="0.5" clip="true" />
+            <TextSymbolizer face-name="bogus" clip="true"/>
         </Rule>
     </Style>
     

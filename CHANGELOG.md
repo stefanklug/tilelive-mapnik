@@ -1,5 +1,74 @@
 # tilelive-mapnik changelog
 
+## 0.6.14
+
+* Support for Node v0.11.x
+
+## 0.6.13
+
+* Support for node-mapnik@3.x
+
+## 0.6.12
+
+* Improved cache key generation
+
+## 0.6.11
+
+* Support for node-mapnik >= 1.4.12
+
+## 0.6.10
+
+* Started auto-registering fonts (now that node-mapnik does not) which can be disabled with `?autoLoadFonts=false` (@vsivsi)
+* Correct UTF grid content type (@mojodna)
+* Add ?poolSize, falling back to UV_THREADPOOL_SIZE further falling back to the number of cores reported. (@mojodna)
+* Report autoscale: true (@mojodna)
+
+## 0.6.9
+
+* node-eio dependency removed. If you are using node v0.8.x still and want to increase the threadpool size you'll need to do it yourself now.
+
+## 0.6.8
+
+* Accept node-mapnik@1.4.x
+
+## 0.6.7
+
+* Repair support for node-mapnik@0.7.x (broken in 0.6.6)
+
+## 0.6.6
+
+* Added support for node-mapnik@1.3.2
+
+## 0.6.5
+
+* Avoid trying to resolve undefined `uri.pathname` @dshorthouse
+
+## 0.6.4
+
+* Allow users to configure strict mode via URI (#74) (@strk)
+* Loosen mapnik requirement to bet between 0.7.25 and 1.2.x (@strk)
+
+## 0.6.3
+
+* key solidCache on image format (#51)
+* Fix tests to work with Mapnik 2.3.x (https://github.com/mapnik/mapnik/issues/2028)
+
+## 0.6.2
+
+* Ensure correct detection of mime type for new mapnik image formats that separate name from options using `:`.
+
+## 0.6.1
+
+* Fixed package.json `engines` declaration
+* Upgraded to node-mapnik 1.2.0
+
+## 0.6.0
+
+* Upgraded to node-mapnik-1.1.2 (#68)
+* Moved cache of solid tiles to tilesource (rather than global) #64
+* Ensured `scale` value passed to Mapnik is a number
+* Exposed mapnik binding as MapnikSource.mapnik
+
 ## 0.5.0
 
 * Removed cached _xml property (#25)
