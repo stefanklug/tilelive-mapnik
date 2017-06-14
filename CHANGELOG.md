@@ -1,5 +1,26 @@
 # tilelive-mapnik changelog
 
+## 0.7.0
+
+* Upgraded to mapnik@3.6.0
+
+## 0.6.18
+
+* Upgraded to generic-pool@2.4.x
+
+## 0.6.17
+
+* Upgraded tests to latest node-mapnik@3.x
+
+## 0.6.16
+
+* Support for node-mapnik@3.2.x
+
+## 0.6.15
+
+* Support for Node v0.12.x
+* Fixed handling of boolean options
+
 ## 0.6.14
 
 * Support for Node v0.11.x
