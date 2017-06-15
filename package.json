@@ -1,5 +1,5 @@
 {
-  "name": "@mapbox/tilelive-mapnik",
+  "name": "tilelive-mapnik",
   "version": "0.7.0",
   "main": "./lib/mapnik_backend.js",
   "description": "Mapnik backend for tilelive",
@@ -29,7 +29,7 @@
   "dependencies": {
     "step": "~0.0.5",
     "generic-pool": "~2.4.0",
-    "mapnik": "~3.6.0",
+    "mapnik": "3.5.14",
     "mime": "~1.3.4"
   },
   "devDependencies": {
